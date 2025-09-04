@@ -4,5 +4,7 @@ import { logger } from './config/logger.js';
 
 const app = buildApp();
 app.listen(env.PORT, () => {
-  logger.info(`🚀 Bank API listening on http://localhost:${env.PORT}  (docs: /docs)`);
+  // Show the external port (3001) when running in Docker, internal port otherwise
+  const displayPort = process.env.EXTERNAL_PORT || env.PORT;
+  logger.info(`🚀 Bank API listening on http://localhost:${displayPort}  (docs: /docs)`);
 });
