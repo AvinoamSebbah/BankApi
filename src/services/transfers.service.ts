@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 import crypto from 'crypto';
 import { notFound, badRequest } from '../libs/httpErrors.js';
 
@@ -23,7 +23,7 @@ export const TransfersService = {
       if (existing) return existing.responseData as any;
     }
 
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const from = await tx.account.findUnique({ where: { id: fromAccountId } });
       const to = await tx.account.findUnique({ where: { id: toAccountId } });
 
