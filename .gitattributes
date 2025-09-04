@@ -1,0 +1,29 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Force Unix line endings for shell scripts
+*.sh text eol=lf
+
+# Force Unix line endings for Dockerfile and docker-compose
+Dockerfile text eol=lf
+docker-compose.yml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Ensure TypeScript, JavaScript, and JSON files use consistent line endings
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Keep Windows line endings for batch files
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
