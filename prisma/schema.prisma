@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  accounts  Account[]
+  createdAt DateTime  @default(now())
+}
+
+model Account {
+  id           Int          @id @default(autoincrement())
+  customerId   Int
+  balance      Decimal       @db.Decimal(18,2) @default(0)
+  createdAt    DateTime      @default(now())
+  customer     Customer      @relation(fields: [customerId], references: [id])
+  transfersOut Transfer[]    @relation("transfersOut")
+  transfersIn  Transfer[]    @relation("transfersIn")
+}
+
+model Transfer {
+  id          Int      @id @default(autoincrement())
+  fromAccount Int
+  toAccount   Int
+  amount      Decimal  @db.Decimal(18,2)
+  createdAt   DateTime @default(now())
+
+  from Account @relation("transfersOut", fields: [fromAccount], references: [id])
+  to   Account @relation("transfersIn",  fields: [toAccount],   references: [id])
+}
+
+model IdempotencyKey {
+  key        String   @id
+  requestHash String
+  responseData Json
+  createdAt  DateTime @default(now())
+  // TTL handled in app logic (env IDEMPOTENCY_TTL_SECONDS)
+}
