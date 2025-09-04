@@ -1,8 +1,24 @@
 # Bank API
 
-**Author:** Avinoam Sebbah
+**Author:** Avinoam Sebbah  
+**Repository:** https://github.com/AvinoamSebbah/BankApi.git
 
 A RESTful API for banking operations built with Node.js, TypeScript, Express.js, and PostgreSQL. This API provides comprehensive banking functionality including customer management, account operations, and money transfers with idempotency support.
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/AvinoamSebbah/BankApi.git
+cd BankApi
+
+# Start with Docker (Recommended)
+docker-compose up --build
+
+# Access the API
+# - API: http://localhost:3001
+# - Swagger Docs: http://localhost:3001/docs
+```
 
 ## 🏗️ Architecture
 
@@ -33,11 +49,12 @@ A RESTful API for banking operations built with Node.js, TypeScript, Express.js,
 
 ## 🔧 Development Setup (A to Z)
 
-### 1. Clone and Install Dependencies
+### 1. Clone the Repository
 
 ```bash
-# Navigate to project directory
-cd bank-api
+# Clone the project
+git clone https://github.com/AvinoamSebbah/BankApi.git
+cd BankApi
 
 # Install dependencies
 npm install
